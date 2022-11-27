@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\GH#_componentsDevelopment\\DiagonalSortingPoints\\DiagonalSortingPoints\\DiagonalSortingPoints.csproj": {}
+  },
+  "projects": {
+    "E:\\GH#_componentsDevelopment\\DiagonalSortingPoints\\DiagonalSortingPoints\\DiagonalSortingPoints.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\GH#_componentsDevelopment\\DiagonalSortingPoints\\DiagonalSortingPoints\\DiagonalSortingPoints.csproj",
+        "projectName": "DiagonalSortingPoints",
+        "projectPath": "E:\\GH#_componentsDevelopment\\DiagonalSortingPoints\\DiagonalSortingPoints\\DiagonalSortingPoints.csproj",
+        "packagesPath": "C:\\Users\\Ma3an\\.nuget\\packages\\",
+        "outputPath": "E:\\GH#_componentsDevelopment\\DiagonalSortingPoints\\DiagonalSortingPoints\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Ma3an\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "Grasshopper": {
+              "target": "Package",
+              "version": "[7.0.20314.3001, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.414\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

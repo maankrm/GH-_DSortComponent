@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "nD1eaXQoa9mDU3snZspw5vpXWiae6Gi1lJBMmNYCKHWpkEdLQ4L3LGLJddVDPoMKRbXvAfUwMHLs8lBsTnOWUg==",
+  "success": true,
+  "projectFilePath": "E:\\GH#_componentsDevelopment\\DiagonalSortingPoints\\DiagonalSortingPoints\\DiagonalSortingPoints.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ma3an\\.nuget\\packages\\grasshopper\\7.0.20314.3001\\grasshopper.7.0.20314.3001.nupkg.sha512",
+    "C:\\Users\\Ma3an\\.nuget\\packages\\rhinocommon\\7.0.20314.3001\\rhinocommon.7.0.20314.3001.nupkg.sha512"
+  ],
+  "logs": []
+}
