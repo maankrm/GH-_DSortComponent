@@ -1,2 +1,2 @@
-# GH-_SortComponent
+# DiagonalSortingPoints
 Diagonal Sorting Points In Grasshopper 
