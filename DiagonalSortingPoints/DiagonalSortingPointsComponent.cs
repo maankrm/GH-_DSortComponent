@@ -53,9 +53,14 @@ namespace DiagonalSortingPoints
         /// Subcategory the panel. If you use non-existing tab or panel names, 
         /// new tabs/panels will automatically be created.
         /// </summary>
+        /// 
+
+        // Component Written By @maan.arch - PARASTORM lab.
+        // Sometimes I Need A Component That Do Something Like Sort a List Of Points.
+        // And So, I Done This Code To Help Me & You (: . Try And Let Me Know !!
         public DiagonalSortingPointsComponent()
           : base("DiagonalSortingPoints", "Nickname",
-            "Description",
+            "Diagonal Sorting List of Points",
             "Sets", "List")
         {
         }
