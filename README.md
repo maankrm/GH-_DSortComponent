@@ -7,9 +7,9 @@ Diagonal Sorting Points In Grasshopper
 
 Output Values : - 
 
-List of Points.
-Sorted Keys.
-Indices.
-An Average Point.
+-List of Points.
+-Sorted Keys.
+-Indices.
+-An Average Point.
 
 App from here : https://www.food4rhino.com/en/app/dspoints?lang=en
