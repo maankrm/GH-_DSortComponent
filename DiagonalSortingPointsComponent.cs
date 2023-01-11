@@ -41,7 +41,6 @@ using GH_IO.Serialization;
 //╚═╝      ╚═════╝ ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝                
 
 
-
 namespace DiagonalSortingPoints
 {
     public class DiagonalSortingPointsComponent : GH_Component
@@ -72,8 +71,6 @@ namespace DiagonalSortingPoints
         {
             pManager.AddPointParameter("ListOfPoints", "L", "List of Point3d To Sort Them Diagonally Like O'clock Wise",
                 GH_ParamAccess.list);
-
-           
         }
 
         /// <summary>
@@ -85,9 +82,6 @@ namespace DiagonalSortingPoints
             pManager.AddNumberParameter("Keys", "keys", "Sorted Keys", GH_ParamAccess.list);
             pManager.AddIntegerParameter("Index", "index", "Indices of Points", GH_ParamAccess.list);
             pManager.AddPointParameter("Average", "Average", "An Average Point", GH_ParamAccess.item);
-
-
-
         }
 
         /// <summary>
@@ -103,59 +97,58 @@ namespace DiagonalSortingPoints
 
             if (!DA.GetDataList(0, ListP)) return;
 
-            if ( ListP == null )
+            //Algorithm
+
+            if (ListP.Count == 0)
             {
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Blank, "There Are No Data Yet > Please Input a List Of Points");
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "There Are No Data Yet > Please Input a List Of Points");
                 return;
             }
             else
             {
-
-                //Algorithm
-                
                 Point3d avg = new Point3d();
-
 
                 // Get An Average Point Between A List Of Points (Start)------->
                 for (int i = 0; i < ListP.Count; i++)
-            {
+                {
+                    if (ListP.Count == 1 || ListP.Count == 0) 
+                    {
+                        AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "you're not able to get a result from less than 2 points");
+                        return;
 
-                avg += new Point3d((ListP[i].X / ListP.Count),(ListP[i].Y / ListP.Count),(ListP[i].Z / ListP.Count));
-                
-            }
+                    }
+                    else 
+                    {
+                         avg += new Point3d((ListP[i].X / ListP.Count), (ListP[i].Y / ListP.Count), (ListP[i].Z / ListP.Count));
+
+                    }
+
+                }
 
                 // Get An Average Point Between A List Of Points (End)--------->
 
-                // Create A List Of 2PVectors  (Start)------------------------->
+                // compute victors btween 2points & dot-product values and get sorted angles!--------start
 
                 List<Vector3d> Vectors = new List<Vector3d>();
-
-            for (int i = 0; i < ListP.Count; i++)
-            {
-                Vector3d vecs = ListP[i] - avg;
-                Vectors.Add(vecs);
-            }
-                // Create A List Of 2PVectors  (End)--------------------------->
-                
-                // Compute a Dot Product Values of 2Vectors (Start)------------>
-
                 List<double> angles = new List<double>();
 
-            for (int i = 0; i < Vectors.Count; i++)
-            {
-                double D1 = Vector3d.Multiply(Vectors[i], Plane.WorldXY.XAxis);
-                double D2 = Vector3d.Multiply(Vectors[i], Plane.WorldXY.YAxis);
-                // Compute a Dot Product Values of 2Vectors (End)------------------->
+                for (int i = 0; i < ListP.Count; i++)
+                {
+                    Vector3d vecs = ListP[i] - avg;
+                    Vectors.Add(vecs);
+                    double Dx = Vector3d.Multiply(Vectors[i], Plane.WorldXY.XAxis);
+                    double Dy = Vector3d.Multiply(Vectors[i], Plane.WorldXY.YAxis);
+                    // compute victors btween 2points & dot-product values and get sorted angles!--------end
 
-                // Compute Angles (keys) (Start)------------------------------------>
+                    // Compute Angles (keys) (Start)------------------------------------>
 
-                double a = Math.Atan2(D1, D2);
-                double angle = a * (180 / Math.PI);
-                // Compute Angles (keys) (End)-------------------------------------->
+                    double a = Math.Atan2(Dx, Dy);
+                    double angle = a * (180 / Math.PI);
+                    // Compute Angles (keys) (End)-------------------------------------->
 
-                angles.Add(angle);
+                    angles.Add(angle);
 
-            }
+                }
 
                 // Compute a Dot Product Values of 2Vectors (End)------------------>
 
@@ -176,18 +169,18 @@ namespace DiagonalSortingPoints
                 double[] Z0 = new double[ListP.Count];
 
 
-            for (int i = 0; i < ListP.Count; i++)
-            {
+                for (int i = 0; i < ListP.Count; i++)
+                {
 
-                Point3d pxyz = ListP[i];
-                X0[i] = pxyz.X;
-                sortPointsX.Add(pxyz.X);
-                Y0[i] = pxyz.Y;
-                sortPointsY.Add(pxyz.Y);
-                Z0[i] = pxyz.Z;
-                sortPointsZ.Add(pxyz.Z);
+                    Point3d pxyz = ListP[i];
+                    X0[i] = pxyz.X;
+                    sortPointsX.Add(pxyz.X);
+                    Y0[i] = pxyz.Y;
+                    sortPointsY.Add(pxyz.Y);
+                    Z0[i] = pxyz.Z;
+                    sortPointsZ.Add(pxyz.Z);
 
-            }
+                }
 
                 sortPointsX.Sort(k);
                 sortPointsY.Sort(k);
@@ -195,14 +188,14 @@ namespace DiagonalSortingPoints
 
                 List<int> Pointsindices = new List<int>();
 
-            for (int i = 0; i < ListP.Count; i++)
-            {
-                Point3d PL = new Point3d(sortPointsX[i], sortPointsY[i], sortPointsZ[i]);
+                for (int i = 0; i < ListP.Count; i++)
+                {
+                    Point3d PL = new Point3d(sortPointsX[i], sortPointsY[i], sortPointsZ[i]);
 
-                Pointsindices.Add(i);
-                pointsList.Add(PL);
+                    Pointsindices.Add(i);
+                    pointsList.Add(PL);
 
-            }
+                }
 
                 // Sorting Data (End)---------------------------------------------->
 
@@ -232,5 +225,5 @@ namespace DiagonalSortingPoints
         public override Guid ComponentGuid => new Guid("639AC073-00C3-434E-8440-0E73C571E392");
     }
 
-    
+
 }
